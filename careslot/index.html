@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CareSlot: a single-page hospital appointment booking prototype built with HTML, CSS and JavaScript.">
+<title>CareSlot – Hospital Appointment Booking</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top"><i>+</i>CareSlot</a>
+  <div class="links"><a href="#book">Book</a><a href="#appointments">Appointments</a><a class="keep" href="#book">Help</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <h1>See a doctor without the waiting-room phone call.</h1>
+    <p>Choose a department, pick a free time slot and you’re booked. Manage, confirm or cancel every visit from one place.</p>
+    <a class="btn" href="#book">Book an appointment</a>
+  </div>
+  <aside class="next" aria-live="polite">
+    <h2>Next appointment</h2>
+    <p class="big" id="nextWho">–</p>
+    <p class="sub" id="nextWhen">Nothing scheduled yet.</p>
+    <div class="stats">
+      <div class="stat"><b id="sToday">0</b><span>Today</span></div>
+      <div class="stat"><b id="sPending">0</b><span>Pending</span></div>
+      <div class="stat"><b id="sTotal">0</b><span>Total</span></div>
+    </div>
+  </aside>
+</div></header>
+
+<main><div class="wrap">
+  <section class="card" id="book" aria-labelledby="bookT">
+    <h2 id="bookT">Book an appointment</h2>
+    <p class="lead">Fields marked * are required.</p>
+    <form id="form" novalidate>
+      <div class="field"><label for="name">Patient name *</label><input id="name" name="name" autocomplete="name" maxlength="60" placeholder="e.g. Anita Desai"><p class="err" id="e-name"></p></div>
+      <div class="row2">
+        <div class="field"><label for="phone">Mobile number *</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"><p class="err" id="e-phone"></p></div>
+        <div class="field"><label for="email">Email <small>(optional)</small></label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com"><p class="err" id="e-email"></p></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="dept">Department *</label><select id="dept" name="dept"></select><p class="err" id="e-dept"></p></div>
+        <div class="field"><label for="doctor">Doctor *</label><select id="doctor" name="doctor" disabled><option value="">Choose department first</option></select><p class="err" id="e-doctor"></p></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="date">Date *</label><input id="date" name="date" type="date"><p class="err" id="e-date"></p></div>
+        <div class="field"><label for="slot">Time slot *</label><select id="slot" name="slot" disabled><option value="">Pick doctor and date</option></select><p class="err" id="e-slot"></p></div>
+      </div>
+      <div class="field"><label for="reason">Reason for visit <small>(optional)</small></label><textarea id="reason" name="reason" maxlength="200" placeholder="Short description of symptoms or check-up type"></textarea><p class="err" id="e-reason"></p></div>
+      <div class="actions"><button class="btn" type="submit">Book appointment</button><button class="btn ghost" type="reset" id="reset">Clear</button></div>
+    </form>
+  </section>
+
+  <section class="card" id="appointments" aria-labelledby="listT">
+    <h2 id="listT">Appointments</h2>
+    <p class="lead">Search and filter. Changes save automatically in this browser.</p>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search patient, doctor or phone" aria-label="Search appointments">
+      <select id="fStatus" aria-label="Filter by status"><option value="">All statuses</option><option>Pending</option><option>Confirmed</option><option>Completed</option><option>Cancelled</option></select>
+      <select id="fDept" aria-label="Filter by department"><option value="">All departments</option></select>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="list" id="list"></div>
+  </section>
+</div></main>
+
+<footer><div class="wrap">CareSlot prototype · Data stays in your browser · Not for real medical use</div></footer>
+<div id="toasts" aria-live="polite" role="status"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
